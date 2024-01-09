@@ -14,45 +14,6 @@ The following are SQL Queries that were formulated by me for analytical purposes
 Calculate Total Food Sales Across All Venues For Comparison.
 
 
-SELECT
- Venue.Venue_ID AS 'Venue ID',
- Venue.Venue_Name AS 'Venue Name',
- SUM(Food.Food_Price * Food_Order.Quantity_Sold) AS ' Sales'
-FROM
- TEST.Venue
-INNER JOIN
- TEST.Venue_Table
-ON
- Venue.Venue_ID = Venue_Table.Venue_ID
-INNER JOIN
- TEST.Item_Order
-ON
- Venue_Table.Table_ID = Item_Order.Table_ID
-AND
- Item_Order.Order_ID = Item_Order.Order_Date
-AND
- Item_Order.Order_Date BETWEEN 2019/04/01 AND 2019/04/30
-INNER JOIN
- TEST.Food_Order
-ON
- Item_Order.Order_ID = Food_Order.Order_ID
-INNER JOIN
- TEST.Food
-ON
- Food_Order.Food_ID = Food.Food_ID
-GROUP BY
- Venue.Venue_ID,
- Venue.Venue_Name
-ORDER BY
- Sales DESC;
-
- Select * from Item_Order
- ORDER BY Order_Date;
-
-
-
-Food Sales Without Date (Works)
-
   SELECT
    Venue.Venue_ID AS 'Venue ID',
    Venue.Venue_Name AS 'Venue Name',
